@@ -32,6 +32,24 @@
   padding: 1rem;
 }
 
+.container {
+  display: grid;
+  gap: 100px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 20px;
+  width: 100%;
+}
+
+h4 {
+  text-align: center;
+}
+
 p {
   font-size: 2rem;
 }
