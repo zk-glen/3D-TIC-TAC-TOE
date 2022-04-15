@@ -3,28 +3,39 @@ import Square from "../components/Square";
 
 type Player = "X" | "O" | "DRAW" | undefined;
 
+interface GameData {
+  squares: any[];
+  numberofTurns: number;
+  currentPlayer: "X" | "O";
+  oScore: number;
+  xScore: number;
+  winner: Player;
+}
+
 const getRandomPlayer = () => (Math.round(Math.random() * 1) === 1 ? "X" : "O");
 
 function Board() {
-  const [squares, setSquares] = useState(Array(27).fill(undefined));
-  const [currentPlayer, setCurrentPlayer] = useState<"X" | "O">(
-    getRandomPlayer()
-  );
+  const [gameData, setGameData] = useState<GameData>({
+    squares: Array(27).fill(undefined),
+    numberofTurns: 0,
+    currentPlayer: getRandomPlayer(),
+    oScore: 0,
+    xScore: 0,
+    winner: undefined,
+  });
 
-  const [scoreO, setScoreO] = useState(0);
-  const [scoreX, setScoreX] = useState(0);
-
-  const [winner, setWinner] = useState<Player>(undefined);
-
-  function reset() {
-    setSquares(Array(27).fill(undefined));
-    setWinner(undefined);
-    setCurrentPlayer(getRandomPlayer());
-    setScoreX(0);
-    setScoreO(0);
+  function reset(): void {
+    setGameData({
+      squares: Array(27).fill(undefined),
+      numberofTurns: 0,
+      currentPlayer: getRandomPlayer(),
+      oScore: 0,
+      xScore: 0,
+      winner: undefined,
+    });
   }
 
-  function calculateWinner(squares: Player[]) {
+  function calculateWinner(squares: Player[]): void {
     const lines = [
       // TOP BOARD - 8
       [0, 1, 2],
@@ -99,42 +110,66 @@ function Board() {
         squares[a] === "X" ? (x += 1) : (o += 1);
       }
     }
-    setScoreX(x);
-    setScoreO(o);
+    setGameData({ ...gameData, oScore: o, xScore: x });
   }
 
-  function setSquareValue(index: number) {
-    const newData = squares.map((val, i) => {
+  function setSquareValue(index: number): void {
+    const newData = gameData.squares.map((val, i) => {
       if (i === index) {
-        return currentPlayer;
+        return gameData.currentPlayer;
       }
       return val;
     });
-    setSquares(newData);
-    calculateWinner(squares);
-    setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
+
+    calculateWinner(gameData.squares);
+    setGameData({
+      ...gameData,
+      squares: newData,
+      numberofTurns: (gameData.numberofTurns += 1),
+      winner:
+        gameData.numberofTurns !== 27
+          ? undefined
+          : gameData.oScore === gameData.xScore
+          ? "DRAW"
+          : gameData.oScore < gameData.xScore
+          ? "X"
+          : "O",
+      currentPlayer: gameData.currentPlayer === "X" ? "O" : "X",
+    });
   }
 
-  let allSquares = new Array(27).fill(undefined).map((_, i) => {
+  let allSquares = gameData.squares.map((_, i) => {
     return (
       <Square
-        winner={winner}
+        winner={gameData.winner}
         key={i}
         onClick={() => setSquareValue(i)}
-        value={squares[i]}
+        value={gameData.squares[i]}
       />
     );
   });
 
   useEffect(() => {
-    const w = calculateWinner(squares);
-  }, [currentPlayer]);
+    const w = calculateWinner(gameData.squares);
+  }, [gameData.currentPlayer]);
 
   return (
     <div>
-      {!winner && <p>Current Player is {currentPlayer}</p>}
-      {winner && winner !== "DRAW" && <p>Congratulations {winner}!</p>}
-      {winner && winner === "DRAW" && <p>It's a draw!</p>}
+      <div className="border flex justify-between w-full">
+        <div className="border flex flex-col items-center">
+          <h4>X{"\n"}SCORE</h4>
+          <p>{gameData.xScore}</p>
+        </div>
+        <div className=" border flex flex-col items-center">
+          <h4>O{"\n"} SCORE</h4>
+          <p>{gameData.oScore}</p>
+        </div>
+      </div>
+      {!gameData.winner && <p>Current Player is {gameData.currentPlayer}</p>}
+      {gameData.winner && gameData.winner !== "DRAW" && (
+        <p>Congratulations {gameData.winner}!</p>
+      )}
+      {gameData.winner && gameData.winner === "DRAW" && <p>It's a draw!</p>}
       <div className="container">
         <div>
           <h4>TOP</h4>
@@ -149,11 +184,11 @@ function Board() {
           <div className="grid">{allSquares.slice(18, 27)}</div>
         </div>
       </div>
-      <div className="scores">
-        <div>X Score {scoreX}</div>
-        <div>O Score {scoreO}</div>
-      </div>
-      <button className="reset" onClick={reset}>
+
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300"
+        onClick={reset}
+      >
         RESET
       </button>
     </div>

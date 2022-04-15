@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .grid {
   display: grid;
   gap: 5px;
@@ -19,17 +23,6 @@
 
 .square_x {
   background-color: #90f6ff;
-}
-
-.reset {
-  background: #8c5fb9;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  font-size: 2rem;
-  margin-top: 2rem;
-  padding: 1rem;
 }
 
 .container {
