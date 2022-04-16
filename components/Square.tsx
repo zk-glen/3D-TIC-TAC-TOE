@@ -1,24 +1,24 @@
+import SquareButton from "./SquareButton";
+
 type Player = "X" | "O" | "DRAW" | undefined;
 
-function Square({
-  value,
-  onClick,
-  winner,
-}: {
+interface Props {
   winner: Player;
   value: Player;
   onClick: () => void;
-}) {
+}
+
+const Square: React.FC<Props> = ({ value, onClick, winner }) => {
   if (!value) {
-    return (
-      <button className="square" onClick={onClick} disabled={Boolean(winner)} />
-    );
+    return <SquareButton onClick={onClick} disabled={Boolean(winner)} />;
   }
   return (
-    <button className={`square square_${value.toLowerCase()}`} disabled>
-      {value}
-    </button>
+    <SquareButton
+      disabled
+      text={value}
+      color={value == "X" ? "dreamer-blue" : "dreamer-pink"}
+    />
   );
-}
+};
 
 export default Square;

@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import Square from "../components/Square";
+import Grid from "./Grid";
+import Button from "../components/Button";
+import ScoreBoard from "./ScoreBoard";
 
 type Player = "X" | "O" | "DRAW" | undefined;
 
@@ -10,6 +13,7 @@ interface GameData {
   oScore: number;
   xScore: number;
   winner: Player;
+  vertical: boolean;
 }
 
 const getRandomPlayer = () => (Math.round(Math.random() * 1) === 1 ? "X" : "O");
@@ -22,10 +26,12 @@ function Board() {
     oScore: 0,
     xScore: 0,
     winner: undefined,
+    vertical: false,
   });
 
   function reset(): void {
     setGameData({
+      ...gameData,
       squares: Array(27).fill(undefined),
       numberofTurns: 0,
       currentPlayer: getRandomPlayer(),
@@ -155,42 +161,32 @@ function Board() {
 
   return (
     <div>
-      <div className="border flex justify-between w-full">
-        <div className="border flex flex-col items-center">
-          <h4>X{"\n"}SCORE</h4>
-          <p>{gameData.xScore}</p>
-        </div>
-        <div className=" border flex flex-col items-center">
-          <h4>O{"\n"} SCORE</h4>
-          <p>{gameData.oScore}</p>
-        </div>
-      </div>
-      {!gameData.winner && <p>Current Player is {gameData.currentPlayer}</p>}
-      {gameData.winner && gameData.winner !== "DRAW" && (
-        <p>Congratulations {gameData.winner}!</p>
-      )}
-      {gameData.winner && gameData.winner === "DRAW" && <p>It's a draw!</p>}
-      <div className="container">
-        <div>
-          <h4>TOP</h4>
-          <div className="grid">{allSquares.slice(0, 9)}</div>
-        </div>
-        <div>
-          <h4>MIDDLE</h4>
-          <div className="grid">{allSquares.slice(9, 18)}</div>
-        </div>
-        <div>
-          <h4>BOTTOM</h4>
-          <div className="grid">{allSquares.slice(18, 27)}</div>
-        </div>
-      </div>
+      <ScoreBoard
+        xScore={gameData.xScore}
+        oScore={gameData.oScore}
+        currentPlayer={gameData.currentPlayer}
+        winner={gameData.winner}
+      />
 
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-md text-1xl font-medium hover:bg-blue-700 transition duration-300"
+      <div className={`flex ${gameData.vertical ? "flex-col" : ""} gap-20`}>
+        <Grid position="TOP">{allSquares.slice(0, 9)}</Grid>
+        <Grid position="MIDDLE">{allSquares.slice(9, 18)}</Grid>
+        <Grid position="BOTTOM">{allSquares.slice(18, 27)}</Grid>
+      </div>
+      <Button
+        mainColor="blue-500"
+        hoverColor="blue-700"
+        text="RESET"
         onClick={reset}
-      >
-        RESET
-      </button>
+      />
+      <Button
+        mainColor="blue-500"
+        hoverColor="blue-700"
+        text="Orientation"
+        onClick={() =>
+          setGameData({ ...gameData, vertical: !gameData.vertical })
+        }
+      />
     </div>
   );
 }

@@ -4,8 +4,13 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./containers/**/*.{js,ts,jsx,tsx}",
   ],
+
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "dreamer-pink": "#ffbdf8",
+        "dreamer-blue": "#90f6ff",
+      },
+    },
   },
-  plugins: [],
 };

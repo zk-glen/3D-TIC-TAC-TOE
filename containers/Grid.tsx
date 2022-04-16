@@ -1,17 +1,15 @@
 import React from "react";
-import Square from "../components/Square";
 
-const Grid = (squareIds: number[]) => {
+interface Props {
+  position: string;
+  children: JSX.Element[];
+}
+
+const Grid: React.FC<Props> = ({ position, children }) => {
   return (
-    <div className="grid">
-      {squares.map((item) => {
-        <Square
-          winner={winner}
-          key={i}
-          onClick={() => setSquareValue(i)}
-          value={squares[i]}
-        />;
-      })}
+    <div>
+      <h4>{position}</h4>
+      <div className="grid gap-1 grid-cols-3">{children}</div>
     </div>
   );
 };
