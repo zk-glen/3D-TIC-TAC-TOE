@@ -16,10 +16,15 @@ const SquareButton: React.FC<Props> = ({ disabled, onClick, color, text }) => {
     rounded-md
     border-solid 
     border-2
-    border-black
+    border-default-black
     text-white
     text-7xl
-    bg-${color ? color : "black"}`}
+    shadow-violet-shadow
+    hover:shadow-none
+    hover:scale-102
+    transition-transform ease duration-100
+    bg-${color ? color : "   bg-gradient-radial"}
+    `}
       onClick={onClick}
       disabled={disabled}
     >

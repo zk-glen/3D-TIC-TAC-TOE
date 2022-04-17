@@ -1,5 +1,5 @@
 import React from "react";
-import ScoreCounter from "../components/scoreCounter";
+import ScoreCounter from "../components/ScoreCounter";
 import PlayerIndicator from "../components/PlayerIndicator";
 
 type Player = "X" | "O" | "DRAW" | undefined;
@@ -19,9 +19,9 @@ const ScoreBoard: React.FC<Props> = ({
 }) => {
   return (
     <div className="border flex justify-between items-center w-full">
-      <ScoreCounter color="dreamer-blue" team="X" scoreValue={xScore} />
+      <ScoreCounter color="bg-dreamer-blue" team="X" scoreValue={xScore} />
       <PlayerIndicator currentPlayer={currentPlayer} winner={winner} />
-      <ScoreCounter color="dreamer-pink" team="O" scoreValue={oScore} />
+      <ScoreCounter color="bg-dreamer-pink" team="O" scoreValue={oScore} />
     </div>
   );
 };

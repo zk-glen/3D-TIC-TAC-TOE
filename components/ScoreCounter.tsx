@@ -8,7 +8,7 @@ interface Props {
 
 const ScoreCounter: React.FC<Props> = ({ color, scoreValue, team }) => {
   return (
-    <div className={`border flex flex-col items-center bg-${color}`}>
+    <div className={`border flex flex-col items-center ${color}`}>
       <h4>{team}</h4>
       <p>{scoreValue}</p>
     </div>

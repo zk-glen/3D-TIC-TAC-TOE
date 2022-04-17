@@ -168,25 +168,25 @@ function Board() {
         winner={gameData.winner}
       />
 
-      <div className={`flex ${gameData.vertical ? "flex-col" : ""} gap-20`}>
+      <div
+        className={`flex flex-col ${
+          gameData.vertical ? "flex-col" : " lg:flex-row"
+        } gap-20`}
+      >
         <Grid position="TOP">{allSquares.slice(0, 9)}</Grid>
         <Grid position="MIDDLE">{allSquares.slice(9, 18)}</Grid>
         <Grid position="BOTTOM">{allSquares.slice(18, 27)}</Grid>
       </div>
-      <Button
-        mainColor="blue-500"
-        hoverColor="blue-700"
-        text="RESET"
-        onClick={reset}
-      />
-      <Button
-        mainColor="blue-500"
-        hoverColor="blue-700"
-        text="Orientation"
-        onClick={() =>
-          setGameData({ ...gameData, vertical: !gameData.vertical })
-        }
-      />
+      <div className="flex justify-center gap-5">
+        <Button text="Reset Board" alternateStyle={false} onClick={reset} />
+        <Button
+          text="Toggle Board"
+          alternateStyle={true}
+          onClick={() =>
+            setGameData({ ...gameData, vertical: !gameData.vertical })
+          }
+        />
+      </div>
     </div>
   );
 }
