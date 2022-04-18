@@ -41,30 +41,3 @@ module.exports = {
     },
   },
 };
-
-// #B8FBF6
-// #EECBC0
-// #87A9F0
-// #CAB3F5
-// #3441C0
-// #90f6ff
-// #ffbdf8
-// colors: {
-//   "dreamer-pink": "#ffbdf8",
-//   "dreamer-blue": "#90f6ff",
-// },
-
-//
-
-// min-width: 480px;
-// margin: 1rem;
-// border-radius: 2px;
-// border: 1px solid rgb(51, 51, 51);
-// /* background: rgb(255, 255, 255); */
-// box-shadow: rgb(210 210 249) 4px 4px 0px 0px;
-
-// border-radius: 4px;
-//     box-shadow: rgb(0 0 0 / 15%) 0px 8px 17px;
-//     background: rgb(242, 242, 242);
-//     transition: transform 0.1s ease 0s;
-//     transform: scale(1.02);

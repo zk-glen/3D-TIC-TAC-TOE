@@ -160,14 +160,13 @@ function Board() {
   }, [gameData.currentPlayer]);
 
   return (
-    <div>
+    <div className="flex flex-col items-center gap-8">
       <ScoreBoard
         xScore={gameData.xScore}
         oScore={gameData.oScore}
         currentPlayer={gameData.currentPlayer}
         winner={gameData.winner}
       />
-
       <div
         className={`flex flex-col ${
           gameData.vertical ? "flex-col" : " lg:flex-row"
@@ -177,7 +176,7 @@ function Board() {
         <Grid position="MIDDLE">{allSquares.slice(9, 18)}</Grid>
         <Grid position="BOTTOM">{allSquares.slice(18, 27)}</Grid>
       </div>
-      <div className="flex justify-center gap-5">
+      <div className="flex flex-col justify-center gap-5 lg:flex-row">
         <Button text="Reset Board" alternateStyle={false} onClick={reset} />
         <Button
           text="Toggle Board"

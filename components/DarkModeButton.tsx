@@ -9,7 +9,7 @@ interface Props {
 const DarkModeButton: React.FC<Props> = ({ darkMode, onClick }) => {
   return (
     <div
-      className="flex cursor-pointer justify-between items-center px-2 border-gray-default border-2 rounded-full h-10 w-20 bg-white dark:bg-dark-mode-button-black relative"
+      className="absolute top-3 right-3 flex cursor-pointer justify-between items-center px-2 border-gray-default border-2 rounded-full h-10 w-20 bg-white dark:bg-dark-mode-button-black "
       onClick={onClick}
     >
       <IoSunnyOutline className="text-dark-mode-yellow-1 w-6 h-6" />

@@ -18,7 +18,7 @@ const ScoreBoard: React.FC<Props> = ({
   winner,
 }) => {
   return (
-    <div className="border flex justify-between items-center w-full">
+    <div className="flex justify-between items-center  w-full text-lg">
       <ScoreCounter color="bg-dreamer-blue" team="X" scoreValue={xScore} />
       <PlayerIndicator currentPlayer={currentPlayer} winner={winner} />
       <ScoreCounter color="bg-dreamer-pink" team="O" scoreValue={oScore} />
