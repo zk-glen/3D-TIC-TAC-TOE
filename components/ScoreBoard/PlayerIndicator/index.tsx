@@ -1,7 +1,6 @@
 import React from "react";
 import { IoArrowBackCircle, IoArrowForwardCircle } from "react-icons/io5";
-
-type Player = "X" | "O" | "DRAW" | undefined;
+import { Player } from "../../../ts/types/player_types";
 
 interface Props {
   currentPlayer: Player;

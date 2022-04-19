@@ -1,8 +1,7 @@
 import React from "react";
-import ScoreCounter from "../components/ScoreCounter";
-import PlayerIndicator from "../components/PlayerIndicator";
-
-type Player = "X" | "O" | "DRAW" | undefined;
+import ScoreCounter from "../ScoreCounter";
+import PlayerIndicator from "../PlayerIndicator";
+import { Player } from "../../../ts/types/player_types";
 
 interface Props {
   xScore: number;

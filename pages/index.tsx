@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import { useTheme } from "next-themes";
 import Head from "next/head";
-import Board from "../containers/Board";
-import DarkModeButton from "../components/DarkModeButton";
+import Board from "../components/GameContainer/Index";
+import DarkModeButton from "../components/Common/DarkModeToggle";
 
 const Home: NextPage = () => {
   const { theme, setTheme } = useTheme();

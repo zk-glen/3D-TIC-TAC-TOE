@@ -1,4 +1,3 @@
-import React from "react";
 import { IoSunnyOutline, IoMoonOutline } from "react-icons/io5";
 
 interface Props {
@@ -6,7 +5,7 @@ interface Props {
   onClick: () => void;
 }
 
-const DarkModeButton: React.FC<Props> = ({ darkMode, onClick }) => {
+const DarkModeToggle: React.FC<Props> = ({ darkMode, onClick }) => {
   return (
     <div
       className="absolute top-3 right-3 flex cursor-pointer justify-between items-center px-2 border-gray-default border-2 rounded-full h-10 w-20 bg-white dark:bg-dark-mode-button-black "
@@ -21,7 +20,6 @@ const DarkModeButton: React.FC<Props> = ({ darkMode, onClick }) => {
         dark:border-white
         bg-dark-mode-yellow-2
         dark:bg-dark-mode-night-1
-       
         rounded-full
         h-8 w-8 
         absolute 
@@ -38,4 +36,4 @@ const DarkModeButton: React.FC<Props> = ({ darkMode, onClick }) => {
   );
 };
 
-export default DarkModeButton;
+export default DarkModeToggle;

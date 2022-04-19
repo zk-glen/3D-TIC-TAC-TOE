@@ -16,7 +16,7 @@ const Button: React.FC<Props> = ({ text, alternateStyle, onClick }) => {
       text-base
       ${
         alternateStyle
-          ? "bg-transparent text-default-black border border-default-black dark:border-white hover:text-button-1 dark:hover:text-button-dark-1 hover:border-button-1 dark:hover:border-button-dark-1"
+          ? "bg-transparent text-default-black border dark:text-white border-default-black dark:border-white hover:text-button-1 dark:hover:text-button-dark-1 hover:border-button-1 dark:hover:border-button-dark-1"
           : "bg-button-1 dark:bg-button-dark-1 hover:bg-button-1-hover dark:hover:bg-button-dark-1-hover text-white dark:text-black"
       }
       hover:shadow-violet-shadow
