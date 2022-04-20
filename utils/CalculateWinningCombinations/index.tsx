@@ -1,9 +1,11 @@
+import { arrayBuffer } from "stream/consumers";
+
 type Player = "X" | "O" | "DRAW" | undefined;
 function CalculateWinningCombinations(squares: Player[]): {
   oScore: number;
   xScore: number;
 } {
-  const lines: number[][] = [
+  let winningCombinations: number[][] = [
     // TOP BOARD - 8
     [0, 1, 2],
     [3, 4, 5],
@@ -63,16 +65,27 @@ function CalculateWinningCombinations(squares: Player[]): {
     [2, 13, 24],
     // Total 49 possibilities
   ];
-
   let x: number = 0;
   let o: number = 0;
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+  let xWinningCombinations = [];
+  let oWinningCombinations = [];
+  for (let i = 0; i < winningCombinations.length; i++) {
+    const [a, b, c] = winningCombinations[i];
 
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      squares[a] === "X" ? (x += 1) : (o += 1);
+      if (squares[a] === "X") {
+        x += 1;
+        xWinningCombinations.push([a, b, c]);
+      } else {
+        o += 1;
+        oWinningCombinations.push([a, b, c]);
+      }
     }
   }
+
+  // console.log("X", xWinningCombinations);
+  // console.log("Y", oWinningCombinations);
+
   return { oScore: o, xScore: x };
 }
 

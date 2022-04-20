@@ -17,6 +17,7 @@ module.exports = {
         // "no-shadow": "rgb(0 0 0 / 15%) 0px 8px 17px",
       },
       colors: {
+        "background-dark": "#293233",
         "dreamer-pink": "#ffbdf8",
         "dreamer-blue": "#90f6ff",
         "button-1": "#1C1CFF",
@@ -24,13 +25,12 @@ module.exports = {
         "button-dark-1": "#FF7324",
         "button-dark-1-hover": "#FF8F4F",
         "default-black": "#333333",
-        "background-default": "#CCFCFF",
+        "background-default": "#FFE3D3",
         "gray-default": "#E4E7EC",
         "dark-mode-button-black": "#374152",
         "dark-mode-yellow-1": "#FFBB53",
         "dark-mode-yellow-2": "#FFECCF",
         "dark-mode-night-1": "#485367",
-        "background-dark": "#293233",
       },
       scale: {
         102: "1.02",
